@@ -10,7 +10,7 @@ The runtime needs a project DSN, not a Sentry API auth token. The DSN lives in t
 
 The VM setup event was accepted with HTTP 200 and confirmed in the [Sentry setup issue](https://concordia-university-00.sentry.io/issues/7773295769/?project=4512201298935808): event `6ff37dc16928420e92d406a45d67f611`.
 
-**Activation:** the tested update is installed and hash-verified on the VM. The running production PID remained 45546 during installation; production activation requires the separately approved restart. A rollback archive is saved at `/home/nene/ne-ne/backend-backups/sentry-20261004.tgz`, and the original protected environment file is backed up with mode 600. The production service can preload the SDK through `NODE_OPTIONS='--import /home/nene/ne-ne/backend/dist/instrument.js'` in its existing protected environment file. This works with its existing systemd `ExecStart`, without needing a root-owned service edit. The repository's systemd template and `npm start` also use explicit `--import`. Keep initialization before Express imports.
+**Activation:** the tested update is installed and hash-verified on the VM. After the user's explicit restart approval, systemd started production PID **50178** at **2026-10-05 03:35:49 UTC** with release `nene-backend@02a30ed`, environment `production`, sampling rate `1`, and the Sentry preload configured. Local and public health checks returned HTTP **200**, and an authenticated read-only task request also returned **200**. No coding worker was running during activation. A rollback archive is saved at `/home/nene/ne-ne/backend-backups/sentry-20261004.tgz`, and the original protected environment file is backed up with mode 600. The production service preloads the SDK through `NODE_OPTIONS='--import /home/nene/ne-ne/backend/dist/instrument.js'` in its existing protected environment file. This works with its existing systemd `ExecStart`, without needing a root-owned service edit. The repository's systemd template and `npm start` also use explicit `--import`. Keep initialization before Express imports.
 
 For an administrator, the conventional restart command is:
 
@@ -98,6 +98,7 @@ At the Sentry project level, **automatic JavaScript source fetching is disabled*
 ## Verification and evidence
 
 - Backend TypeScript build passes.
+- After the approved restart, Sentry confirmed a new HTTP trace from the running production service with environment `production`, release `nene-backend@02a30ed`, and SDK `11.4.0`. The read-only verification requested a nonexistent synthetic task and returned the expected 404; its 109.20 ms duration is one API request, not an agent performance benchmark. The route is recorded as `/tasks/:id`, without task contents. [Open the verified production HTTP trace](https://concordia-university-00.sentry.io/explore/traces/trace/e56d8b99ac4b4d8094c5618af9c04adc/?project=4512201298935808).
 - All **31 VM tests pass**, including the real MongoDB transaction test. The latter creates and removes only a unique `nene_test_<UUID>` database, never production `nene`.
 - Frontend lint, production webpack build and **13 tests pass**, including a privacy-filter test.
 - A 9,000-event stress fixture retains 1,000 tool and usage observations while exporting exactly **81** detailed spans (60 tools + 20 models + one root). No agent timeout is introduced.
@@ -106,6 +107,8 @@ At the Sentry project level, **automatic JavaScript source fetching is disabled*
 - An isolated frontend instance pointed to an unavailable local test backend validates API failure handling without creating a production task. The browser failure was confirmed in [Sentry issue NE-NE-BACKEND-4](https://concordia-university-00.sentry.io/issues/7773324329/?project=4512201298935808).
 
 ![The isolated frontend recovers with a friendly API error](evidence/frontend-api-recovery.jpg)
+
+![The running production backend reports its release and normalized HTTP route](evidence/sentry-production-http.jpg)
 
 The screenshot below is **real Sentry UI displaying a synthetic fixture**, not a paid Gemma response or a real GitHub/Render deployment. The model tokens, cost and millisecond durations shown here are fixture values. It verifies ingestion and schema recognition, not production model performance.
 
@@ -131,7 +134,7 @@ SENTRY_ENVIRONMENT=hackathon-verification \
 
 The smoke command prints an event ID, flush result and HTTP acceptance. The fixture writes sanitized spans and receipts to `/tmp/nene-sentry-fixture.json`. Neither command changes production task/project records. The fixture uses fake GitHub/Render providers.
 
-For a future live demonstration after restart: create a small initial build, inspect its agent trace, approve and deploy it, then request a small continuation and inspect that same conversation. Use the root's aggregate tokens and labeled USD estimate alongside the tool/check waterfall. Capture the resulting GitHub commit and stable Render service IDs from the separate correlated spans. Keep fixture and replay environments separate from `production`.
+For a future live demonstration: create a small initial build, inspect its agent trace, approve and deploy it, then request a small continuation and inspect that same conversation. Use the root's aggregate tokens and labeled USD estimate alongside the tool/check waterfall. Capture the resulting GitHub commit and stable Render service IDs from the separate correlated spans. Keep fixture and replay environments separate from `production`.
 
 ## Implementation files
 
