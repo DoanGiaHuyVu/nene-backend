@@ -1,0 +1,22 @@
+[Unit]
+Description=ne-ne Backend
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+User=nene
+Group=nene
+SupplementaryGroups=docker
+
+WorkingDirectory=/home/nene/ne-ne/backend
+
+EnvironmentFile=/home/nene/.config/ne-ne/backend.env
+
+ExecStart=/usr/bin/node /home/nene/ne-ne/backend/dist/server.js
+
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

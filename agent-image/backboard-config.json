@@ -1,0 +1,26 @@
+{
+  "apiUrl": "https://app.backboard.io/api",
+  "model": {
+    "provider": "digitalocean",
+    "model": "gemma-4-31B-it"
+  },
+  "thinking": null,
+  "memory": "auto",
+  "memoryProfile": "code",
+  "providers": [
+    {
+      "id": "digitalocean",
+      "name": "DigitalOcean",
+      "protocol": "openai-chat",
+      "baseUrl": "https://inference.do-ai.run/v1",
+      "auth": {
+        "type": "env",
+        "variable": "DO_MODEL_KEY"
+      },
+      "headers": {},
+      "extraArgs": {},
+      "discoverModels": true,
+      "models": []
+    }
+  ]
+}

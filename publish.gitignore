@@ -1,0 +1,14 @@
+.backboard/
+.npm-cache/
+tmp/
+
+node_modules/
+.next/
+dist/
+build/
+coverage/
+
+.env
+.env.*
+*.log
+.DS_Store
