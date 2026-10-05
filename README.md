@@ -65,6 +65,10 @@ and GitHub SSH access described below.
 `npm run dev` starts the TypeScript watcher; `npm start` runs `dist/server.js`.
 Both require environment variables to have been loaded before startup.
 
+Sentry is optional and preloaded by `npm start`/`npm run dev` before Express.
+Configure its DSN privately; never commit credentials. See [Sentry setup, tracing,
+privacy, deployment, and evidence](docs/SENTRY-AGENT-TRACING.md).
+
 ## Existing VM setup
 
 The observed VM uses Ubuntu 24.04.5 LTS on x86_64, Node.js `22.23.3`,

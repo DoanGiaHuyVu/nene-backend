@@ -4,6 +4,7 @@ import { StringDecoder } from "node:string_decoder";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { ApiError, UUID, type Run, type LegacyRun } from "./model.js";
+import { currentAttributes, lifecycle, operation } from "./telemetry.js";
 
 const exec = promisify(execFile);
 const IMAGE = "nene-agent:0.3";
@@ -152,22 +153,26 @@ export class DockerRunner implements Runner {
   async run(run: Run, source: Run | undefined, emit: AgentEvent) {
     try {
       await this.diskGuard();
-      await this.docker(["volume", "create", run.volumeName]);
+      await operation(run, "create workspace volume", "nene.workspace.create", () => this.docker(["volume", "create", run.volumeName]));
       if (source) {
         if (!await this.hasArtifact(source)) throw new Error("Approved project artifact is unavailable");
-        await this.docker(["run", "--rm", "--name", `nene-seed-${run.id}`, ...sandboxArgs(), "--network=none",
+        await operation(run, "load approved workspace", "nene.workspace.seed", () => this.docker(["run", "--rm", "--name", `nene-seed-${run.id}`, ...sandboxArgs(), "--network=none",
           "--entrypoint", "sh", "--mount", `type=volume,source=${run.volumeName},target=/workspace`,
           "--mount", `type=bind,src=${path.join(this.artifactPath(source), "app")},dst=/source-app,readonly`,
-          IMAGE, "-c", "mkdir -p /workspace/app && tar --exclude=node_modules --exclude=.next --exclude=.cache --exclude=.git --exclude=\'.env*\' -cf - -C /source-app . | tar -xf - -C /workspace/app && chmod -R a+rwX /workspace/app"]);
+          IMAGE, "-c", "mkdir -p /workspace/app && tar --exclude=node_modules --exclude=.next --exclude=.cache --exclude=.git --exclude=\'.env*\' -cf - -C /source-app . | tar -xf - -C /workspace/app && chmod -R a+rwX /workspace/app"]), { "nene.artifact.exists": true });
+        lifecycle("Existing project loaded", run);
         await emit("project:loaded", { sourceTaskId: source.id, message: "Loaded the latest approved project revision" });
       }
       const instruction = source ? `You are modifying the existing project in /workspace/app. Inspect it first; preserve working functionality. Do not recreate it unless necessary.\n\nThe user wants this change:\n${run.prompt}` : run.prompt;
       const prompt = `${instruction}\n\nBefore declaring completion, run the appropriate build, test, lint, type-check, or syntax checks and fix errors.\nCreate the deployable application inside /workspace/app, including a Dockerfile.\nListen on 0.0.0.0 and read PORT (default 10000). The Dockerfile must start the production app.\nThe basic application must not require secrets to display. Do not run Docker yourself.`;
+      await operation(run, "Docker Backboard execution", "nene.agent.execute", async () => {
       await this.stream(run, ["run", "--name", run.containerName, ...sandboxArgs(), "--network=bridge",
         "--mount", `type=volume,source=${run.volumeName},target=/workspace`,
         "--mount", `type=bind,src=${path.join(this.root, "agent-image/backboard-config.json")},dst=/seed/backboard-config.json,readonly`,
         "-e", "DO_MODEL_KEY", IMAGE, "--cwd", "/workspace", "--format", "json", "--permission-mode", "bypass", "--print", prompt], emit);
-      return await this.preserve(run);
+      currentAttributes({ "nene.agent.exit_code": 0 });
+      }, { "nene.container.name": run.containerName, "gen_ai.request.model": "gemma-4-31B-it" });
+      return await operation(run, "preserve artifact", "nene.artifact.preserve", () => this.preserve(run));
     } finally { await this.cleanup(run); }
   }
   async recover(run: Run, emit: AgentEvent) {
@@ -175,11 +180,11 @@ export class DockerRunner implements Runner {
       const state = await this.container(run);
       if (!state) return undefined;
       if (state.Running) {
-        await this.stream(run, ["logs", "--follow", "--tail", "0", run.containerName], emit);
+        await operation(run, "recover Docker execution", "nene.agent.recover", () => this.stream(run, ["logs", "--follow", "--tail", "0", run.containerName], emit), { "nene.recovered": true });
         const exit = Number(await this.docker(["wait", run.containerName]));
         if (exit !== 0) throw new Error(`Recovered agent exited with code ${exit}`);
       } else if (state.ExitCode !== 0) throw new Error(`Interrupted agent exited with code ${state.ExitCode}`);
-      return await this.preserve(run);
+      return await operation(run, "preserve artifact", "nene.artifact.preserve", () => this.preserve(run));
     } finally { await this.cleanup(run); }
   }
   async cleanup(run: Run) {

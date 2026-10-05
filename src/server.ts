@@ -2,6 +2,7 @@ import { MongoStore } from "./db.js";
 import { DockerRunner } from "./runner.js";
 import { Backend } from "./backend.js";
 import { createApp } from "./app.js";
+import { flushTelemetry } from "./telemetry.js";
 
 for (const key of ["MONGODB_URI", "DO_MODEL_KEY", "NENE_API_TOKEN"]) {
   if (!process.env[key]) throw new Error(`${key} is missing`);
@@ -24,7 +25,7 @@ async function start() {
     stopping = true;
     server.close();
     server.closeAllConnections();
-    try { await backend.shutdown(); process.exit(0); }
+    try { await backend.shutdown(); await flushTelemetry(); process.exit(0); }
     catch { console.error("Backend shutdown did not complete cleanly; startup recovery will reconcile persisted work"); process.exit(1); }
   };
   process.once("SIGTERM", shutdown);
@@ -33,5 +34,6 @@ async function start() {
 void start().catch(async (error) => {
   backend.reportError("startup", error);
   await store.close().catch(() => {});
+  await flushTelemetry();
   process.exit(1);
 });

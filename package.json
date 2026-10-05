@@ -5,15 +5,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch --import ./src/instrument.ts src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node --import ./dist/instrument.js dist/server.js",
     "test": "npm run build && node --test test/*.test.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sentry/node": "^11.4.0",
     "express": "^5.2.1",
     "mongodb": "^7.7.0"
   },

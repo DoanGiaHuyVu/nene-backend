@@ -35,6 +35,7 @@ export interface Run {
   internalError?: string;
   eventSeq?: number;
   schemaVersion?: number;
+  telemetry?: Record<string, string | number | boolean>;
 }
 
 export interface Project {
@@ -93,7 +94,7 @@ export function transition(run: Run, next: RunStatus): void {
 }
 
 export function publicRun(run: Run) {
-  const { internalError, approval, eventSeq, schemaVersion, containerName, volumeName, ...result } = run;
+  const { internalError, approval, eventSeq, schemaVersion, containerName, volumeName, telemetry, ...result } = run;
   return result;
 }
 

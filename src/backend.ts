@@ -6,6 +6,7 @@ import type { Runner } from "./runner.js";
 import { publishArtifactToGithub } from "./github.js";
 import * as render from "./render.js";
 import { ChangesReader } from "./changes.js";
+import { AgentTelemetry, captureFailure, currentAttributes, lifecycle, operation } from "./telemetry.js";
 
 export interface Integrations {
   publish: typeof publishArtifactToGithub;
@@ -40,7 +41,10 @@ export class Backend {
     for (const secret of this.secrets) if (secret.length >= 6) text = text.split(secret).join("[REDACTED]");
     return text;
   }
-  private log(runId: string, error: unknown) { console.error(`Backend operation failed for ${runId}: ${this.redact(error)}`); }
+  private log(runId: string, error: unknown) {
+    console.error(`Backend operation failed for ${runId}: ${this.redact(error)}`);
+    captureFailure(UUID.test(runId) ? "backend operation" : runId, error);
+  }
   reportError(context: string, error: unknown) { this.log(context, error); }
   private async exclusive<T>(key: string, operation: () => Promise<T>): Promise<T> {
     const previous = this.gates.get(key) ?? Promise.resolve();
@@ -138,9 +142,10 @@ export class Backend {
       return publicRun(run);
     });
   }
-  private async agentEvent(run: Run, type: string, data: unknown) {
+  private async agentEvent(run: Run, type: string, data: unknown, telemetry: AgentTelemetry) {
     await this.emit(run.id, type, data);
     if (type === "backboard:event") {
+      telemetry.observe(data);
       const decision = inferProgress(data, run);
       run.writeCount = decision.writeCount;
       if (decision.stage && PROGRESS_ORDER[decision.stage] > PROGRESS_ORDER[run.progress]) {
@@ -162,13 +167,23 @@ export class Backend {
     finally { await this.store.releaseRun(run); }
   }
   private async execute(run: Run, source?: Run, recovery = false) {
+    const telemetry = new AgentTelemetry(run, Date.now, { "nene.recovered": recovery });
+    try { await telemetry.trace(async () => this.executeObserved(run, source, recovery, telemetry)); }
+    finally { await this.store.patchRun(run.id, { telemetry: telemetry.summary() }).catch(error => this.log(run.id, error)); }
+  }
+  private async executeObserved(run: Run, source: Run | undefined, recovery: boolean, telemetry: AgentTelemetry) {
     try {
       if (!recovery) {
         transition(run, "running");
         await this.store.patchRun(run.id, { status: run.status, updatedAt: run.updatedAt });
         await this.emit(run.id, "task:status", { status: run.status });
       }
-      const emit = (type: string, data: unknown) => this.agentEvent(run, type, data);
+      if (recovery) {
+        // Rebuild numeric totals from the existing cursor without sending old details
+        // again. Docker recovery follows only new log lines.
+        for await (const event of this.store.events(run.id)) if (event.type === "backboard:event") telemetry.observe(event.data, false);
+      }
+      const emit = (type: string, data: unknown) => this.agentEvent(run, type, data, telemetry);
       const artifact = recovery ? await this.runner.recover(run, emit) : await this.runner.run(run, source, emit);
       if (!artifact) { await this.fail(run, new Error("Persisted worker container no longer exists"), true); return; }
       if (this.stopping) { await this.fail(run, new Error("Backend shutdown"), true); return; }
@@ -180,6 +195,7 @@ export class Backend {
       await this.emit(run.id, "task:progress", { stage: run.progress, message: "Build finished. Waiting for your approval." });
       await this.emit(run.id, "task:status", { status: run.status, artifactPath: artifact });
     } catch (error) {
+      captureFailure("coding run", error, run);
       await this.fail(run, error, this.stopping);
     } finally {
       if (this.workerId === run.id) this.workerId = undefined;
@@ -196,10 +212,17 @@ export class Backend {
       const project = await this.projectFor(run);
       if (project.activeRunId !== run.id || (project.approvedRunId ?? undefined) !== (run.sourceTaskId ?? undefined)) throw new ApiError(409, "This is not the project's active revision");
       if (!await this.runner.hasArtifact(run)) throw new ApiError(409, "Generated project artifact is unavailable");
+      return operation(run, "approval", "nene.approval", async () => {
+      lifecycle("Approval received", run);
       await this.store.patchRun(run.id, { approval: "publishing", updatedAt: now() });
       try {
-        const publication = await this.api.publish(run.id, run.artifactPath!, { branch: project.githubBranch,
-          expectedCommit: project.approvedCommit, commitMessage: run.sourceTaskId ? `Update: ${run.prompt.replace(/\s+/g, " ").slice(0, 72)}` : undefined });
+        const publication = await operation(run, "GitHub publish", "nene.github.publish", async () => {
+          const result = await this.api.publish(run.id, run.artifactPath!, { branch: project.githubBranch,
+            expectedCommit: project.approvedCommit, commitMessage: run.sourceTaskId ? `Update: ${run.prompt.replace(/\s+/g, " ").slice(0, 72)}` : undefined });
+          currentAttributes({ "nene.github.branch": result.branch, "nene.github.commit": result.commit });
+          lifecycle("GitHub revision published", run, { "nene.github.branch": result.branch, "nene.github.commit": result.commit });
+          return result;
+        });
         // The transaction updates both the project pointer and the run only after a successful push.
         await this.store.promote(run, publication);
         const approved = await this.getTask(run.id);
@@ -212,6 +235,7 @@ export class Backend {
           internalError: this.redact(error).slice(0, 8192) });
         throw new ApiError(502, "Could not confirm GitHub publication. Retry Approve; duplicate commits are prevented.");
       }
+      }, { "nene.approval.wait_ms": Math.max(0, Date.now() - Date.parse(run.updatedAt)), "nene.github.branch": project.githubBranch }, true);
     });
   }
   async deploy(id: unknown) {
@@ -226,6 +250,7 @@ export class Backend {
       }
       let project = await this.projectFor(run);
       if (project.approvedRunId !== run.id) throw new ApiError(409, "Only the latest approved project revision can be deployed");
+      return operation(run, "Render deployment request", "nene.render.request", async () => {
       const deployment: Deployment = { provider: "render", status: "creating", requestedAt: now(), attempt: (run.deployment?.attempt ?? 0) + 1 };
       await this.store.claimDeployment(run, deployment);
       run.deployment = deployment;
@@ -242,17 +267,25 @@ export class Backend {
           Object.assign(deployment, service);
           await this.store.recordDeployment(run, deployment);
           requestIssued = true;
-          const result = await this.api.triggerDeploy(service.serviceId, run.github.commit);
+          const result = await operation(run, "Render redeploy", "nene.render.redeploy", async () => {
+            const result = await this.api.triggerDeploy(service!.serviceId, run.github!.commit);
+            currentAttributes({ "nene.deployment.deploy_id": result.id }); return result;
+          }, { "nene.deployment.kind": "existing_service", "nene.deployment.service_id": service.serviceId,
+            "nene.github.branch": project.githubBranch, "nene.github.commit": run.github!.commit });
           deployId = result.id;
         } else {
           requestIssued = true;
-          const result = await this.api.createService(project.id, project.githubBranch, "app");
+          const result = await operation(run, "Render create service", "nene.render.create", async () => {
+            const result = await this.api.createService(project.id, project.githubBranch, "app");
+            currentAttributes({ "nene.deployment.service_id": result.serviceId, "nene.deployment.deploy_id": result.deployId }); return result;
+          }, { "nene.deployment.kind": "initial_service", "nene.github.branch": project.githubBranch });
           service = { serviceId: result.serviceId, url: result.url, dashboardUrl: result.dashboardUrl };
           deployId = result.deployId;
         }
         Object.assign(deployment, service, { deployId, status: "building" });
         await this.store.recordDeployment(run, deployment);
         await this.emit(run.id, "deployment:building", { message: "Render is building the application", ...deployment });
+        lifecycle("Render deployment started", run, { "nene.deployment.service_id": deployment.serviceId, "nene.deployment.deploy_id": deployment.deployId });
       } catch (error) {
         this.log(run.id, error);
         // Only a definitive API rejection permits another POST. Network errors/5xx
@@ -268,6 +301,7 @@ export class Backend {
         await this.store.recordDeployment(run, deployment);
       }
       return publicRun(await this.getTask(run.id));
+      }, {}, true);
     });
   }
   private async reconcileDeployment(run: Run) {
@@ -291,6 +325,13 @@ export class Backend {
         await this.store.recordDeployment(run, deployment);
       }
       const result = await this.api.getDeploy(deployment.serviceId!, deployment.deployId!);
+      const terminal = ["live", "build_failed", "update_failed", "pre_deploy_failed", "canceled", "deactivated"].includes(result.status);
+      if (terminal) await operation(run, "Render deployment result", "nene.render.result", async () => {
+        if (result.status !== "live") captureFailure("Render build", new Error("Render deployment failed"), run);
+        lifecycle(result.status === "live" ? "Deployment live" : "Deployment failed", run, { "nene.deployment.status": result.status });
+      }, { "nene.deployment.service_id": deployment.serviceId, "nene.deployment.deploy_id": deployment.deployId,
+        "nene.deployment.status": result.status, "nene.success": result.status === "live",
+        "nene.deployment.elapsed_ms": Math.max(0, Date.now() - Date.parse(deployment.requestedAt ?? run.createdAt)) }, true);
       if (result.status === "live") {
         deployment.status = "live";
         deployment.error = undefined;

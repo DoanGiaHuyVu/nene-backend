@@ -1,0 +1,3387 @@
+{
+  "kind": "fixture",
+  "generatedAt": "2026-10-05T03:12:05.454Z",
+  "runIds": [
+    "c880a58f-4247-4854-9221-a622edfa943a",
+    "7f002186-41bd-45f2-bf81-4612f830bcf9",
+    "00f79646-4585-4ba2-a361-9afd7f2ca344"
+  ],
+  "sameBranch": true,
+  "sameService": true,
+  "spans": [
+    {
+      "name": "chat Gemma",
+      "span_id": "a7b89332a3400190",
+      "trace_id": "85925471a6d9459fb157e03a15494df9",
+      "parent_span_id": "bcc51e68bae41dd5",
+      "start_timestamp": 1791169925.105,
+      "end_timestamp": 1791169925.106,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.chat",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "initial",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "planning",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "chat",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "ai_client",
+          "type": "string"
+        },
+        "gen_ai.system": {
+          "value": "digitalocean",
+          "type": "string"
+        },
+        "gen_ai.request.model": {
+          "value": "gemma-4-31B-it",
+          "type": "string"
+        },
+        "gen_ai.response.model": {
+          "value": "gemma-4-31B-it",
+          "type": "string"
+        },
+        "gen_ai.usage.input_tokens": {
+          "value": 1200,
+          "type": "integer"
+        },
+        "gen_ai.usage.output_tokens": {
+          "value": 120,
+          "type": "integer"
+        },
+        "gen_ai.usage.total_tokens": {
+          "value": 1320,
+          "type": "integer"
+        },
+        "gen_ai.usage.cache_read.input_tokens": {
+          "value": 100,
+          "type": "integer"
+        },
+        "gen_ai.cost.input_tokens": {
+          "value": 0.0002016,
+          "type": "double"
+        },
+        "gen_ai.cost.output_tokens": {
+          "value": 0.00006,
+          "type": "double"
+        },
+        "gen_ai.cost.total_tokens": {
+          "value": 0.0002616,
+          "type": "double"
+        },
+        "nene.cost.kind": {
+          "value": "observed_usage_estimate",
+          "type": "string"
+        },
+        "nene.model.latency_kind": {
+          "value": "observed_interval",
+          "type": "string"
+        },
+        "nene.model.request_index": {
+          "value": 1,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne initial build",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "bcc51e68bae41dd5",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "execute_tool read",
+      "span_id": "b91e8ee7d5b1fd5d",
+      "trace_id": "85925471a6d9459fb157e03a15494df9",
+      "parent_span_id": "bcc51e68bae41dd5",
+      "start_timestamp": 1791169925.11,
+      "end_timestamp": 1791169925.111,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.execute_tool",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "initial",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "planning",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "execute_tool",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "tool",
+          "type": "string"
+        },
+        "gen_ai.tool.name": {
+          "value": "read",
+          "type": "string"
+        },
+        "gen_ai.tool.type": {
+          "value": "function",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne initial build",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "bcc51e68bae41dd5",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "execute_tool edit",
+      "span_id": "81abd6a6e91933ac",
+      "trace_id": "85925471a6d9459fb157e03a15494df9",
+      "parent_span_id": "bcc51e68bae41dd5",
+      "start_timestamp": 1791169925.112,
+      "end_timestamp": 1791169925.113,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.execute_tool",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "initial",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "creating_project",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "execute_tool",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "tool",
+          "type": "string"
+        },
+        "gen_ai.tool.name": {
+          "value": "edit",
+          "type": "string"
+        },
+        "gen_ai.tool.type": {
+          "value": "function",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne initial build",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "bcc51e68bae41dd5",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "execute_tool verify build",
+      "span_id": "b7e711bf9482cede",
+      "trace_id": "85925471a6d9459fb157e03a15494df9",
+      "parent_span_id": "bcc51e68bae41dd5",
+      "start_timestamp": 1791169925.114,
+      "end_timestamp": 1791169925.115,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.execute_tool",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "initial",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "testing",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "execute_tool",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "tool",
+          "type": "string"
+        },
+        "gen_ai.tool.name": {
+          "value": "verify_build",
+          "type": "string"
+        },
+        "gen_ai.tool.type": {
+          "value": "function",
+          "type": "string"
+        },
+        "nene.verification.category": {
+          "value": "build",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "nene.agent.exit_code": {
+          "value": 0,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne initial build",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "bcc51e68bae41dd5",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "execute_tool verify test",
+      "span_id": "9d0e7857c9225891",
+      "trace_id": "85925471a6d9459fb157e03a15494df9",
+      "parent_span_id": "bcc51e68bae41dd5",
+      "start_timestamp": 1791169925.117,
+      "end_timestamp": 1791169925.118,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.execute_tool",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "initial",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "testing",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "execute_tool",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "tool",
+          "type": "string"
+        },
+        "gen_ai.tool.name": {
+          "value": "verify_test",
+          "type": "string"
+        },
+        "gen_ai.tool.type": {
+          "value": "function",
+          "type": "string"
+        },
+        "nene.verification.category": {
+          "value": "test",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "nene.agent.exit_code": {
+          "value": 0,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne initial build",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "bcc51e68bae41dd5",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "ne-ne initial build",
+      "span_id": "bcc51e68bae41dd5",
+      "trace_id": "85925471a6d9459fb157e03a15494df9",
+      "start_timestamp": 1791169925.09864,
+      "end_timestamp": 1791169925.1212523,
+      "is_segment": true,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.invoke_agent",
+          "type": "string"
+        },
+        "sentry.segment.name.source": {
+          "value": "custom",
+          "type": "string"
+        },
+        "sentry.sample_rate": {
+          "value": 1,
+          "type": "integer"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "initial",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "waiting_for_approval",
+          "type": "string"
+        },
+        "nene.operation": {
+          "value": "initial build",
+          "type": "string"
+        },
+        "gen_ai.operation.name": {
+          "value": "invoke_agent",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "agent",
+          "type": "string"
+        },
+        "gen_ai.agent.name": {
+          "value": "ne-ne coder",
+          "type": "string"
+        },
+        "gen_ai.request.model": {
+          "value": "gemma-4-31B-it",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.usage.input_tokens": {
+          "value": 1200,
+          "type": "integer"
+        },
+        "gen_ai.usage.output_tokens": {
+          "value": 120,
+          "type": "integer"
+        },
+        "gen_ai.usage.total_tokens": {
+          "value": 1320,
+          "type": "integer"
+        },
+        "gen_ai.usage.cache_read.input_tokens": {
+          "value": 100,
+          "type": "integer"
+        },
+        "gen_ai.cost.input_tokens": {
+          "value": 0.0002016,
+          "type": "double"
+        },
+        "gen_ai.cost.output_tokens": {
+          "value": 0.00006,
+          "type": "double"
+        },
+        "gen_ai.cost.total_tokens": {
+          "value": 0.0002616,
+          "type": "double"
+        },
+        "nene.cost.kind": {
+          "value": "observed_usage_estimate",
+          "type": "string"
+        },
+        "nene.cost.currency": {
+          "value": "USD",
+          "type": "string"
+        },
+        "nene.cost.rate_date": {
+          "value": "2026-10-04",
+          "type": "string"
+        },
+        "nene.usage.observed": {
+          "value": true,
+          "type": "boolean"
+        },
+        "nene.usage.source": {
+          "value": "backboard_usage_events",
+          "type": "string"
+        },
+        "nene.usage.events": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.usage.invalid_events": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.usage.unknown_model_events": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.tools.total": {
+          "value": 4,
+          "type": "integer"
+        },
+        "nene.tools.failed": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.tools.unmatched": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.tools.read": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.tools.write": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.tools.edit": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.tools.execute": {
+          "value": 2,
+          "type": "integer"
+        },
+        "nene.tools.other": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.verification.total": {
+          "value": 2,
+          "type": "integer"
+        },
+        "nene.verification.passed": {
+          "value": 2,
+          "type": "integer"
+        },
+        "nene.verification.failed": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.verification.unknown": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.telemetry.tool_spans": {
+          "value": 4,
+          "type": "integer"
+        },
+        "nene.telemetry.model_spans": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.telemetry.dropped_spans": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.telemetry.truncated": {
+          "value": false,
+          "type": "boolean"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "nene.agent.write_count": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.agent.duration_ms": {
+          "value": 27,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne initial build",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "bcc51e68bae41dd5",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "ne-ne GitHub publish",
+      "span_id": "9c2c5e468cde7dd0",
+      "trace_id": "2050a8b21a26477c9b202d94a9a5acf8",
+      "parent_span_id": "b9f50e8a9b92254c",
+      "start_timestamp": 1791169925.1283443,
+      "end_timestamp": 1791169925.1293411,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "nene.github.publish",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "initial",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "waiting_for_approval",
+          "type": "string"
+        },
+        "nene.operation": {
+          "value": "GitHub publish",
+          "type": "string"
+        },
+        "nene.github.branch": {
+          "value": "task/c880a58f",
+          "type": "string"
+        },
+        "nene.github.commit": {
+          "value": "c0528ca902754de991afc862dcfce92e",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne approval",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "b9f50e8a9b92254c",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "ne-ne approval",
+      "span_id": "b9f50e8a9b92254c",
+      "trace_id": "2050a8b21a26477c9b202d94a9a5acf8",
+      "start_timestamp": 1791169925.1271615,
+      "end_timestamp": 1791169925.1303139,
+      "is_segment": true,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "nene.approval",
+          "type": "string"
+        },
+        "sentry.segment.name.source": {
+          "value": "custom",
+          "type": "string"
+        },
+        "sentry.sample_rate": {
+          "value": 1,
+          "type": "integer"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "initial",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "waiting_for_approval",
+          "type": "string"
+        },
+        "nene.operation": {
+          "value": "approval",
+          "type": "string"
+        },
+        "nene.approval.wait_ms": {
+          "value": 8,
+          "type": "integer"
+        },
+        "nene.github.branch": {
+          "value": "task/c880a58f",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne approval",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "b9f50e8a9b92254c",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "ne-ne Render create service",
+      "span_id": "9a5b267766f94fed",
+      "trace_id": "47cff39ca1dd4e0382e489fe4a2e7568",
+      "parent_span_id": "af1ad78fb28769d0",
+      "start_timestamp": 1791169925.133242,
+      "end_timestamp": 1791169925.1337729,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "nene.render.create",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "initial",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "completed",
+          "type": "string"
+        },
+        "nene.operation": {
+          "value": "Render create service",
+          "type": "string"
+        },
+        "nene.deployment.kind": {
+          "value": "initial_service",
+          "type": "string"
+        },
+        "nene.github.branch": {
+          "value": "task/c880a58f",
+          "type": "string"
+        },
+        "nene.deployment.service_id": {
+          "value": "srv-c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.deployment.deploy_id": {
+          "value": "dep-1-initial",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne Render deployment request",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "af1ad78fb28769d0",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "ne-ne Render deployment request",
+      "span_id": "af1ad78fb28769d0",
+      "trace_id": "47cff39ca1dd4e0382e489fe4a2e7568",
+      "start_timestamp": 1791169925.1321423,
+      "end_timestamp": 1791169925.1352923,
+      "is_segment": true,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "nene.render.request",
+          "type": "string"
+        },
+        "sentry.segment.name.source": {
+          "value": "custom",
+          "type": "string"
+        },
+        "sentry.sample_rate": {
+          "value": 1,
+          "type": "integer"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "initial",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "completed",
+          "type": "string"
+        },
+        "nene.operation": {
+          "value": "Render deployment request",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne Render deployment request",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "af1ad78fb28769d0",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "ne-ne Render deployment result",
+      "span_id": "a22b458adfeb6f48",
+      "trace_id": "49ff0db0f685468cb286bf0682f84ac4",
+      "start_timestamp": 1791169925.1376681,
+      "end_timestamp": 1791169925.139361,
+      "is_segment": true,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "nene.render.result",
+          "type": "string"
+        },
+        "sentry.segment.name.source": {
+          "value": "custom",
+          "type": "string"
+        },
+        "sentry.sample_rate": {
+          "value": 1,
+          "type": "integer"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "initial",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "completed",
+          "type": "string"
+        },
+        "nene.operation": {
+          "value": "Render deployment result",
+          "type": "string"
+        },
+        "nene.deployment.service_id": {
+          "value": "srv-c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.deployment.deploy_id": {
+          "value": "dep-1-initial",
+          "type": "string"
+        },
+        "nene.deployment.status": {
+          "value": "live",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "nene.deployment.elapsed_ms": {
+          "value": 5,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne Render deployment result",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "a22b458adfeb6f48",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "chat Gemma",
+      "span_id": "98d44ae4589f14f4",
+      "trace_id": "a20e5d4eec124965af507f33c9edd2f8",
+      "parent_span_id": "a77ef8b4582ac6ea",
+      "start_timestamp": 1791169925.144,
+      "end_timestamp": 1791169925.145,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.chat",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "planning",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "chat",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "ai_client",
+          "type": "string"
+        },
+        "gen_ai.system": {
+          "value": "digitalocean",
+          "type": "string"
+        },
+        "gen_ai.request.model": {
+          "value": "gemma-4-31B-it",
+          "type": "string"
+        },
+        "gen_ai.response.model": {
+          "value": "gemma-4-31B-it",
+          "type": "string"
+        },
+        "gen_ai.usage.input_tokens": {
+          "value": 1200,
+          "type": "integer"
+        },
+        "gen_ai.usage.output_tokens": {
+          "value": 120,
+          "type": "integer"
+        },
+        "gen_ai.usage.total_tokens": {
+          "value": 1320,
+          "type": "integer"
+        },
+        "gen_ai.usage.cache_read.input_tokens": {
+          "value": 100,
+          "type": "integer"
+        },
+        "gen_ai.cost.input_tokens": {
+          "value": 0.0002016,
+          "type": "double"
+        },
+        "gen_ai.cost.output_tokens": {
+          "value": 0.00006,
+          "type": "double"
+        },
+        "gen_ai.cost.total_tokens": {
+          "value": 0.0002616,
+          "type": "double"
+        },
+        "nene.cost.kind": {
+          "value": "observed_usage_estimate",
+          "type": "string"
+        },
+        "nene.model.latency_kind": {
+          "value": "observed_interval",
+          "type": "string"
+        },
+        "nene.model.request_index": {
+          "value": 1,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne project update",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "a77ef8b4582ac6ea",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "execute_tool read",
+      "span_id": "94a1043bfd60a789",
+      "trace_id": "a20e5d4eec124965af507f33c9edd2f8",
+      "parent_span_id": "a77ef8b4582ac6ea",
+      "start_timestamp": 1791169925.146,
+      "end_timestamp": 1791169925.147,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.execute_tool",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "planning",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "execute_tool",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "tool",
+          "type": "string"
+        },
+        "gen_ai.tool.name": {
+          "value": "read",
+          "type": "string"
+        },
+        "gen_ai.tool.type": {
+          "value": "function",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne project update",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "a77ef8b4582ac6ea",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "execute_tool edit",
+      "span_id": "a692aee7cb7e95cd",
+      "trace_id": "a20e5d4eec124965af507f33c9edd2f8",
+      "parent_span_id": "a77ef8b4582ac6ea",
+      "start_timestamp": 1791169925.148,
+      "end_timestamp": 1791169925.148,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.execute_tool",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "creating_project",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "execute_tool",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "tool",
+          "type": "string"
+        },
+        "gen_ai.tool.name": {
+          "value": "edit",
+          "type": "string"
+        },
+        "gen_ai.tool.type": {
+          "value": "function",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne project update",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "a77ef8b4582ac6ea",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "execute_tool verify build",
+      "span_id": "a4520577be1959ed",
+      "trace_id": "a20e5d4eec124965af507f33c9edd2f8",
+      "parent_span_id": "a77ef8b4582ac6ea",
+      "start_timestamp": 1791169925.149,
+      "end_timestamp": 1791169925.149,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.execute_tool",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "testing",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "execute_tool",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "tool",
+          "type": "string"
+        },
+        "gen_ai.tool.name": {
+          "value": "verify_build",
+          "type": "string"
+        },
+        "gen_ai.tool.type": {
+          "value": "function",
+          "type": "string"
+        },
+        "nene.verification.category": {
+          "value": "build",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "nene.agent.exit_code": {
+          "value": 0,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne project update",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "a77ef8b4582ac6ea",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "execute_tool verify test",
+      "span_id": "a432f2a1d882fb31",
+      "trace_id": "a20e5d4eec124965af507f33c9edd2f8",
+      "parent_span_id": "a77ef8b4582ac6ea",
+      "start_timestamp": 1791169925.15,
+      "end_timestamp": 1791169925.15,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.execute_tool",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "testing",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "execute_tool",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "tool",
+          "type": "string"
+        },
+        "gen_ai.tool.name": {
+          "value": "verify_test",
+          "type": "string"
+        },
+        "gen_ai.tool.type": {
+          "value": "function",
+          "type": "string"
+        },
+        "nene.verification.category": {
+          "value": "test",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "nene.agent.exit_code": {
+          "value": 0,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne project update",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "a77ef8b4582ac6ea",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "ne-ne project update",
+      "span_id": "a77ef8b4582ac6ea",
+      "trace_id": "a20e5d4eec124965af507f33c9edd2f8",
+      "start_timestamp": 1791169925.1438017,
+      "end_timestamp": 1791169925.1524346,
+      "is_segment": true,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.invoke_agent",
+          "type": "string"
+        },
+        "sentry.segment.name.source": {
+          "value": "custom",
+          "type": "string"
+        },
+        "sentry.sample_rate": {
+          "value": 1,
+          "type": "integer"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "waiting_for_approval",
+          "type": "string"
+        },
+        "nene.operation": {
+          "value": "project update",
+          "type": "string"
+        },
+        "gen_ai.operation.name": {
+          "value": "invoke_agent",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "agent",
+          "type": "string"
+        },
+        "gen_ai.agent.name": {
+          "value": "ne-ne coder",
+          "type": "string"
+        },
+        "gen_ai.request.model": {
+          "value": "gemma-4-31B-it",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.usage.input_tokens": {
+          "value": 1200,
+          "type": "integer"
+        },
+        "gen_ai.usage.output_tokens": {
+          "value": 120,
+          "type": "integer"
+        },
+        "gen_ai.usage.total_tokens": {
+          "value": 1320,
+          "type": "integer"
+        },
+        "gen_ai.usage.cache_read.input_tokens": {
+          "value": 100,
+          "type": "integer"
+        },
+        "gen_ai.cost.input_tokens": {
+          "value": 0.0002016,
+          "type": "double"
+        },
+        "gen_ai.cost.output_tokens": {
+          "value": 0.00006,
+          "type": "double"
+        },
+        "gen_ai.cost.total_tokens": {
+          "value": 0.0002616,
+          "type": "double"
+        },
+        "nene.cost.kind": {
+          "value": "observed_usage_estimate",
+          "type": "string"
+        },
+        "nene.cost.currency": {
+          "value": "USD",
+          "type": "string"
+        },
+        "nene.cost.rate_date": {
+          "value": "2026-10-04",
+          "type": "string"
+        },
+        "nene.usage.observed": {
+          "value": true,
+          "type": "boolean"
+        },
+        "nene.usage.source": {
+          "value": "backboard_usage_events",
+          "type": "string"
+        },
+        "nene.usage.events": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.usage.invalid_events": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.usage.unknown_model_events": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.tools.total": {
+          "value": 4,
+          "type": "integer"
+        },
+        "nene.tools.failed": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.tools.unmatched": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.tools.read": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.tools.write": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.tools.edit": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.tools.execute": {
+          "value": 2,
+          "type": "integer"
+        },
+        "nene.tools.other": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.verification.total": {
+          "value": 2,
+          "type": "integer"
+        },
+        "nene.verification.passed": {
+          "value": 2,
+          "type": "integer"
+        },
+        "nene.verification.failed": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.verification.unknown": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.telemetry.tool_spans": {
+          "value": 4,
+          "type": "integer"
+        },
+        "nene.telemetry.model_spans": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.telemetry.dropped_spans": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.telemetry.truncated": {
+          "value": false,
+          "type": "boolean"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "nene.agent.write_count": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.agent.duration_ms": {
+          "value": 10,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne project update",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "a77ef8b4582ac6ea",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "ne-ne GitHub publish",
+      "span_id": "95036462aa12ab2e",
+      "trace_id": "dce26d04e6ea4e2dbf2c9fb16ce631ae",
+      "parent_span_id": "9628d1b40c302074",
+      "start_timestamp": 1791169925.1587863,
+      "end_timestamp": 1791169925.159778,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "nene.github.publish",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "waiting_for_approval",
+          "type": "string"
+        },
+        "nene.operation": {
+          "value": "GitHub publish",
+          "type": "string"
+        },
+        "nene.github.branch": {
+          "value": "task/c880a58f",
+          "type": "string"
+        },
+        "nene.github.commit": {
+          "value": "595cc4b4dec04c91b2074d7e48d549d3",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne approval",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "9628d1b40c302074",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "ne-ne approval",
+      "span_id": "9628d1b40c302074",
+      "trace_id": "dce26d04e6ea4e2dbf2c9fb16ce631ae",
+      "start_timestamp": 1791169925.1573942,
+      "end_timestamp": 1791169925.1603951,
+      "is_segment": true,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "nene.approval",
+          "type": "string"
+        },
+        "sentry.segment.name.source": {
+          "value": "custom",
+          "type": "string"
+        },
+        "sentry.sample_rate": {
+          "value": 1,
+          "type": "integer"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "waiting_for_approval",
+          "type": "string"
+        },
+        "nene.operation": {
+          "value": "approval",
+          "type": "string"
+        },
+        "nene.approval.wait_ms": {
+          "value": 6,
+          "type": "integer"
+        },
+        "nene.github.branch": {
+          "value": "task/c880a58f",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne approval",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "9628d1b40c302074",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "ne-ne Render redeploy",
+      "span_id": "a73a9b7cd49ba8a7",
+      "trace_id": "d227edc3d55c43a19943a7c10ebb7ee4",
+      "parent_span_id": "b7398bfdd509b425",
+      "start_timestamp": 1791169925.1617854,
+      "end_timestamp": 1791169925.162172,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "nene.render.redeploy",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "completed",
+          "type": "string"
+        },
+        "nene.operation": {
+          "value": "Render redeploy",
+          "type": "string"
+        },
+        "nene.deployment.kind": {
+          "value": "existing_service",
+          "type": "string"
+        },
+        "nene.deployment.service_id": {
+          "value": "srv-c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.github.branch": {
+          "value": "task/c880a58f",
+          "type": "string"
+        },
+        "nene.github.commit": {
+          "value": "595cc4b4dec04c91b2074d7e48d549d3",
+          "type": "string"
+        },
+        "nene.deployment.deploy_id": {
+          "value": "dep-1-update",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne Render deployment request",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "b7398bfdd509b425",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "ne-ne Render deployment request",
+      "span_id": "b7398bfdd509b425",
+      "trace_id": "d227edc3d55c43a19943a7c10ebb7ee4",
+      "start_timestamp": 1791169925.1612759,
+      "end_timestamp": 1791169925.1630206,
+      "is_segment": true,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "nene.render.request",
+          "type": "string"
+        },
+        "sentry.segment.name.source": {
+          "value": "custom",
+          "type": "string"
+        },
+        "sentry.sample_rate": {
+          "value": 1,
+          "type": "integer"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "completed",
+          "type": "string"
+        },
+        "nene.operation": {
+          "value": "Render deployment request",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne Render deployment request",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "b7398bfdd509b425",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "ne-ne Render deployment result",
+      "span_id": "a8e665d89889db2d",
+      "trace_id": "dfafdc7326d14060bde609d2e8e2a02e",
+      "start_timestamp": 1791169925.187438,
+      "end_timestamp": 1791169925.1880121,
+      "is_segment": true,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "nene.render.result",
+          "type": "string"
+        },
+        "sentry.segment.name.source": {
+          "value": "custom",
+          "type": "string"
+        },
+        "sentry.sample_rate": {
+          "value": 1,
+          "type": "integer"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "completed",
+          "type": "string"
+        },
+        "nene.operation": {
+          "value": "Render deployment result",
+          "type": "string"
+        },
+        "nene.deployment.service_id": {
+          "value": "srv-c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.deployment.deploy_id": {
+          "value": "dep-1-update",
+          "type": "string"
+        },
+        "nene.deployment.status": {
+          "value": "live",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "nene.deployment.elapsed_ms": {
+          "value": 25,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne Render deployment result",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "a8e665d89889db2d",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "chat Gemma",
+      "span_id": "b73d1b1edd4cb39a",
+      "trace_id": "0b05931d0b92473c8a45f43387bcffaa",
+      "parent_span_id": "9f75f2a30b2b304f",
+      "start_timestamp": 1791169925.191,
+      "end_timestamp": 1791169925.191,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.chat",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "00f79646-4585-4ba2-a361-9afd7f2ca344",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "planning",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "chat",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "ai_client",
+          "type": "string"
+        },
+        "gen_ai.system": {
+          "value": "digitalocean",
+          "type": "string"
+        },
+        "gen_ai.request.model": {
+          "value": "gemma-4-31B-it",
+          "type": "string"
+        },
+        "gen_ai.response.model": {
+          "value": "gemma-4-31B-it",
+          "type": "string"
+        },
+        "gen_ai.usage.input_tokens": {
+          "value": 1200,
+          "type": "integer"
+        },
+        "gen_ai.usage.output_tokens": {
+          "value": 120,
+          "type": "integer"
+        },
+        "gen_ai.usage.total_tokens": {
+          "value": 1320,
+          "type": "integer"
+        },
+        "gen_ai.usage.cache_read.input_tokens": {
+          "value": 100,
+          "type": "integer"
+        },
+        "gen_ai.cost.input_tokens": {
+          "value": 0.0002016,
+          "type": "double"
+        },
+        "gen_ai.cost.output_tokens": {
+          "value": 0.00006,
+          "type": "double"
+        },
+        "gen_ai.cost.total_tokens": {
+          "value": 0.0002616,
+          "type": "double"
+        },
+        "nene.cost.kind": {
+          "value": "observed_usage_estimate",
+          "type": "string"
+        },
+        "nene.model.latency_kind": {
+          "value": "observed_interval",
+          "type": "string"
+        },
+        "nene.model.request_index": {
+          "value": 1,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne project update",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "9f75f2a30b2b304f",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "execute_tool read",
+      "span_id": "93521c9c67fb774a",
+      "trace_id": "0b05931d0b92473c8a45f43387bcffaa",
+      "parent_span_id": "9f75f2a30b2b304f",
+      "start_timestamp": 1791169925.192,
+      "end_timestamp": 1791169925.192,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.execute_tool",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "00f79646-4585-4ba2-a361-9afd7f2ca344",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "planning",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "execute_tool",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "tool",
+          "type": "string"
+        },
+        "gen_ai.tool.name": {
+          "value": "read",
+          "type": "string"
+        },
+        "gen_ai.tool.type": {
+          "value": "function",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne project update",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "9f75f2a30b2b304f",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "execute_tool edit",
+      "span_id": "903adda209c83f71",
+      "trace_id": "0b05931d0b92473c8a45f43387bcffaa",
+      "parent_span_id": "9f75f2a30b2b304f",
+      "start_timestamp": 1791169925.193,
+      "end_timestamp": 1791169925.193,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.execute_tool",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "00f79646-4585-4ba2-a361-9afd7f2ca344",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "creating_project",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "execute_tool",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "tool",
+          "type": "string"
+        },
+        "gen_ai.tool.name": {
+          "value": "edit",
+          "type": "string"
+        },
+        "gen_ai.tool.type": {
+          "value": "function",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne project update",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "9f75f2a30b2b304f",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "execute_tool verify build",
+      "span_id": "ac83d4a587875f49",
+      "trace_id": "0b05931d0b92473c8a45f43387bcffaa",
+      "parent_span_id": "9f75f2a30b2b304f",
+      "start_timestamp": 1791169925.194,
+      "end_timestamp": 1791169925.194,
+      "is_segment": false,
+      "status": "ok",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.execute_tool",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "00f79646-4585-4ba2-a361-9afd7f2ca344",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "testing",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "execute_tool",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "tool",
+          "type": "string"
+        },
+        "gen_ai.tool.name": {
+          "value": "verify_build",
+          "type": "string"
+        },
+        "gen_ai.tool.type": {
+          "value": "function",
+          "type": "string"
+        },
+        "nene.verification.category": {
+          "value": "build",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": true,
+          "type": "boolean"
+        },
+        "nene.agent.exit_code": {
+          "value": 0,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne project update",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "9f75f2a30b2b304f",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "execute_tool verify test",
+      "span_id": "85e35b5af3685011",
+      "trace_id": "0b05931d0b92473c8a45f43387bcffaa",
+      "parent_span_id": "9f75f2a30b2b304f",
+      "start_timestamp": 1791169925.195,
+      "end_timestamp": 1791169925.195,
+      "is_segment": false,
+      "status": "error",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.execute_tool",
+          "type": "string"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "00f79646-4585-4ba2-a361-9afd7f2ca344",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "testing",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.operation.name": {
+          "value": "execute_tool",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "tool",
+          "type": "string"
+        },
+        "gen_ai.tool.name": {
+          "value": "verify_test",
+          "type": "string"
+        },
+        "gen_ai.tool.type": {
+          "value": "function",
+          "type": "string"
+        },
+        "nene.verification.category": {
+          "value": "test",
+          "type": "string"
+        },
+        "nene.success": {
+          "value": false,
+          "type": "boolean"
+        },
+        "nene.agent.exit_code": {
+          "value": 1,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne project update",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "9f75f2a30b2b304f",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "ne-ne project update",
+      "span_id": "9f75f2a30b2b304f",
+      "trace_id": "0b05931d0b92473c8a45f43387bcffaa",
+      "start_timestamp": 1791169925.1899724,
+      "end_timestamp": 1791169925.2376611,
+      "is_segment": true,
+      "status": "error",
+      "attributes": {
+        "sentry.origin": {
+          "value": "manual",
+          "type": "string"
+        },
+        "sentry.op": {
+          "value": "gen_ai.invoke_agent",
+          "type": "string"
+        },
+        "sentry.segment.name.source": {
+          "value": "custom",
+          "type": "string"
+        },
+        "sentry.sample_rate": {
+          "value": 1,
+          "type": "integer"
+        },
+        "service.name": {
+          "value": "nene-backend",
+          "type": "string"
+        },
+        "nene.run.id": {
+          "value": "00f79646-4585-4ba2-a361-9afd7f2ca344",
+          "type": "string"
+        },
+        "nene.project.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "gen_ai.conversation.id": {
+          "value": "c880a58f-4247-4854-9221-a622edfa943a",
+          "type": "string"
+        },
+        "nene.source_run.id": {
+          "value": "7f002186-41bd-45f2-bf81-4612f830bcf9",
+          "type": "string"
+        },
+        "nene.run.type": {
+          "value": "continuation",
+          "type": "string"
+        },
+        "nene.progress": {
+          "value": "testing",
+          "type": "string"
+        },
+        "nene.operation": {
+          "value": "project update",
+          "type": "string"
+        },
+        "gen_ai.operation.name": {
+          "value": "invoke_agent",
+          "type": "string"
+        },
+        "gen_ai.operation.type": {
+          "value": "agent",
+          "type": "string"
+        },
+        "gen_ai.agent.name": {
+          "value": "ne-ne coder",
+          "type": "string"
+        },
+        "gen_ai.request.model": {
+          "value": "gemma-4-31B-it",
+          "type": "string"
+        },
+        "nene.recovered": {
+          "value": false,
+          "type": "boolean"
+        },
+        "gen_ai.usage.input_tokens": {
+          "value": 1200,
+          "type": "integer"
+        },
+        "gen_ai.usage.output_tokens": {
+          "value": 120,
+          "type": "integer"
+        },
+        "gen_ai.usage.total_tokens": {
+          "value": 1320,
+          "type": "integer"
+        },
+        "gen_ai.usage.cache_read.input_tokens": {
+          "value": 100,
+          "type": "integer"
+        },
+        "gen_ai.cost.input_tokens": {
+          "value": 0.0002016,
+          "type": "double"
+        },
+        "gen_ai.cost.output_tokens": {
+          "value": 0.00006,
+          "type": "double"
+        },
+        "gen_ai.cost.total_tokens": {
+          "value": 0.0002616,
+          "type": "double"
+        },
+        "nene.cost.kind": {
+          "value": "observed_usage_estimate",
+          "type": "string"
+        },
+        "nene.cost.currency": {
+          "value": "USD",
+          "type": "string"
+        },
+        "nene.cost.rate_date": {
+          "value": "2026-10-04",
+          "type": "string"
+        },
+        "nene.usage.observed": {
+          "value": true,
+          "type": "boolean"
+        },
+        "nene.usage.source": {
+          "value": "backboard_usage_events",
+          "type": "string"
+        },
+        "nene.usage.events": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.usage.invalid_events": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.usage.unknown_model_events": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.tools.total": {
+          "value": 4,
+          "type": "integer"
+        },
+        "nene.tools.failed": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.tools.unmatched": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.tools.read": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.tools.write": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.tools.edit": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.tools.execute": {
+          "value": 2,
+          "type": "integer"
+        },
+        "nene.tools.other": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.verification.total": {
+          "value": 2,
+          "type": "integer"
+        },
+        "nene.verification.passed": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.verification.failed": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.verification.unknown": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.telemetry.tool_spans": {
+          "value": 4,
+          "type": "integer"
+        },
+        "nene.telemetry.model_spans": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.telemetry.dropped_spans": {
+          "value": 0,
+          "type": "integer"
+        },
+        "nene.telemetry.truncated": {
+          "value": false,
+          "type": "boolean"
+        },
+        "nene.success": {
+          "value": false,
+          "type": "boolean"
+        },
+        "nene.agent.write_count": {
+          "value": 1,
+          "type": "integer"
+        },
+        "nene.agent.duration_ms": {
+          "value": 48,
+          "type": "integer"
+        },
+        "sentry.trace_lifecycle": {
+          "value": "stream",
+          "type": "string"
+        },
+        "sentry.segment.name": {
+          "value": "ne-ne project update",
+          "type": "string"
+        },
+        "sentry.segment.id": {
+          "value": "9f75f2a30b2b304f",
+          "type": "string"
+        },
+        "sentry.sdk.name": {
+          "value": "sentry.javascript.node",
+          "type": "string"
+        },
+        "sentry.sdk.version": {
+          "value": "11.4.0",
+          "type": "string"
+        },
+        "sentry.environment": {
+          "value": "hackathon-verification",
+          "type": "string"
+        },
+        "nene.evidence.kind": {
+          "value": "fixture",
+          "type": "string"
+        }
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "statusCode": 200
+    },
+    {
+      "statusCode": 200
+    },
+    {
+      "statusCode": 200
+    },
+    {
+      "statusCode": 200
+    },
+    {
+      "statusCode": 200
+    },
+    {
+      "statusCode": 200
+    },
+    {
+      "statusCode": 200
+    },
+    {
+      "statusCode": 200
+    },
+    {
+      "statusCode": 200
+    },
+    {
+      "statusCode": 200
+    },
+    {
+      "statusCode": 200
+    },
+    {
+      "statusCode": 200
+    }
+  ],
+  "flushed": true
+}

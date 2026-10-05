@@ -13,7 +13,7 @@ WorkingDirectory=/home/nene/ne-ne/backend
 
 EnvironmentFile=/home/nene/.config/ne-ne/backend.env
 
-ExecStart=/usr/bin/node /home/nene/ne-ne/backend/dist/server.js
+ExecStart=/usr/bin/node --import /home/nene/ne-ne/backend/dist/instrument.js /home/nene/ne-ne/backend/dist/server.js
 
 Restart=always
 RestartSec=3

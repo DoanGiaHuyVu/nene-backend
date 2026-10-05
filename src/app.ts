@@ -2,6 +2,7 @@ import express, { type Response, type ErrorRequestHandler } from "express";
 import { timingSafeEqual } from "node:crypto";
 import type { Backend } from "./backend.js";
 import { ApiError, publicRun, type TaskEvent } from "./model.js";
+import { captureFailure } from "./telemetry.js";
 
 export function createApp(backend: Backend, apiToken: string) {
   const app = express();
@@ -65,6 +66,7 @@ export function createApp(backend: Backend, apiToken: string) {
   const errors: ErrorRequestHandler = (error, _req, res, _next) => {
     if (res.headersSent) { res.destroy(); return; }
     const status = error instanceof ApiError ? error.status : error.type === "entity.too.large" ? 413 : error instanceof SyntaxError ? 400 : 500;
+    if (status >= 500 && !(error instanceof ApiError)) captureFailure("HTTP request", error);
     // Verbose integration/worker failures are logged by Backend; never return their stacks.
     res.status(status).json({ error: error instanceof ApiError ? error.message : status === 400 ? "Invalid JSON request" : status === 413 ? "Request is too large" : "Backend request failed. Try again shortly." });
   };
