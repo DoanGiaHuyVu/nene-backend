@@ -32,6 +32,7 @@ flowchart LR
 | --- | --- |
 | `src/server.ts` | Startup, recovery, and graceful shutdown |
 | `src/app.ts` | Compatible HTTP API, authentication, validation, and bounded event streaming |
+| `src/changes.ts` | Bounded, read-only application artifact comparisons |
 | `src/backend.ts` | Project/run orchestration, admission locks, approval, deployment, and migration |
 | `src/model.ts` | Project/run types, state transitions, and validation |
 | `src/runner.ts` | Resource-limited Docker execution, artifact retention, and cleanup |
@@ -111,6 +112,7 @@ All routes except `/health` require `Authorization: Bearer <NENE_API_TOKEN>`.
 | POST | `/tasks/:id/continue` | Continue a completed task with a new `prompt` |
 | GET | `/tasks/:id` | Retrieve task state |
 | GET | `/tasks/:id/events` | Stream/replay task events |
+| GET | `/tasks/:id/changes` | Review application changes against this run's approved source before approval |
 | POST | `/tasks/:id/approve` | Publish a generated artifact to GitHub |
 | POST | `/tasks/:id/deploy` | Deploy an approved project to Render |
 

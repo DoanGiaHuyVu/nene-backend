@@ -5,6 +5,7 @@ import { inferProgress, PROGRESS_ORDER } from "./progress.js";
 import type { Runner } from "./runner.js";
 import { publishArtifactToGithub } from "./github.js";
 import * as render from "./render.js";
+import { ChangesReader } from "./changes.js";
 
 export interface Integrations {
   publish: typeof publishArtifactToGithub;
@@ -32,7 +33,7 @@ export class Backend {
   private stopping = false;
   private workerId?: string;
   constructor(public store: Store, private runner: Runner, private api: Integrations = integrations,
-    private secrets: string[] = []) {}
+    private secrets: string[] = [], private changes = new ChangesReader()) {}
 
   private redact(value: unknown): string {
     let text = value instanceof Error ? value.stack ?? value.message : typeof value === "string" ? value : JSON.stringify(value);
@@ -53,6 +54,23 @@ export class Backend {
     const task = await this.store.getRun(id);
     if (!task) throw new ApiError(404, "Task not found");
     return task;
+  }
+  async getChanges(value: unknown) {
+    const run = await this.getTask(value);
+    if (run.status !== "waiting_for_approval" && !(run.status === "completed" && run.github)) {
+      throw new ApiError(409, "Changes are available after a successful build is ready for approval.");
+    }
+    let base: Run | undefined;
+    if (run.sourceTaskId) {
+      try { base = await this.store.getRun(run.sourceTaskId); }
+      catch (error) { this.log(run.id, error); throw error; }
+      if (!base || base.projectId !== run.projectId || base.status !== "completed" || !base.github ||
+        (run.sourceCommit && base.github.commit !== run.sourceCommit)) {
+        throw new ApiError(409, "The approved baseline for this revision is unavailable.");
+      }
+    }
+    try { return await this.changes.read(run, base); }
+    catch (error) { if (!(error instanceof ApiError)) this.log(run.id, error); throw error; }
   }
   private async projectFor(run: Run) {
     if (!UUID.test(run.projectId ?? "")) throw new ApiError(409, "Project migration is incomplete. Try again after backend recovery.");

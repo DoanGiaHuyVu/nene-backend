@@ -17,6 +17,10 @@ export function createApp(backend: Backend, apiToken: string) {
   app.post("/tasks", async (req, res) => res.status(202).json(await backend.create(req.body?.prompt, undefined, req.body?.projectId)));
   app.post("/tasks/:id/continue", async (req, res) => res.status(202).json(await backend.create(req.body?.prompt, req.params.id, req.body?.projectId)));
   app.get("/tasks/:id", async (req, res) => res.json(publicRun(await backend.getTask(req.params.id))));
+  app.get("/tasks/:id/changes", async (req, res) => {
+    res.setHeader("Cache-Control", "no-store");
+    res.json(await backend.getChanges(req.params.id));
+  });
   app.post("/tasks/:id/approve", async (req, res) => res.json(await backend.approve(req.params.id)));
   app.post("/tasks/:id/deploy", async (req, res) => {
     const run = await backend.deploy(req.params.id);
