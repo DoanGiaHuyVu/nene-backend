@@ -1,9 +1,9 @@
 # nene-backend
 
 Backend source and deployment setup imported from `nene@165.245.234.34`.
-The TypeScript source, package files, and compiler configuration are copied
-unchanged from `/home/nene/ne-ne/backend`. The import did not edit VM files,
-restart services, or deploy changes.
+The original source came from `/home/nene/ne-ne/backend`. This checkout now
+includes safeguards for the 1 vCPU / 1 GB RAM / 25 GB Droplet; see
+[the rollout and recovery notes](deploy/SAFETY-CLEANUP.md).
 
 ## What the backend does
 
@@ -11,7 +11,9 @@ An Express API runs Backboard coding tasks inside disposable Docker containers,
 stores task state and events in MongoDB, and streams progress to clients using
 server-sent events. Approving a completed build publishes its artifact to
 `DoanGiaHuyVu/nene-build`; a separate request deploys it to Render.
-Continuations reuse a previous project artifact and its GitHub branch.
+Continuations use the project’s latest approved artifact and existing GitHub
+branch, even when the selected task failed. A persistent project owns the approved
+commit and stable Render service; each task remains an isolated attempt.
 
 ```mermaid
 flowchart LR
@@ -28,7 +30,11 @@ flowchart LR
 
 | Path | Purpose |
 | --- | --- |
-| `src/server.ts` | HTTP API, authentication, task execution, event streaming, deployment orchestration |
+| `src/server.ts` | Startup, recovery, and graceful shutdown |
+| `src/app.ts` | Compatible HTTP API, authentication, validation, and bounded event streaming |
+| `src/backend.ts` | Project/run orchestration, admission locks, approval, deployment, and migration |
+| `src/model.ts` | Project/run types, state transitions, and validation |
+| `src/runner.ts` | Resource-limited Docker execution, artifact retention, and cleanup |
 | `src/db.ts` | MongoDB task/event persistence and indexes |
 | `src/progress.ts` | Progress inferred from Backboard events |
 | `src/github.ts` | Publishes generated artifacts to GitHub |
@@ -46,6 +52,7 @@ flowchart LR
 cd /Users/adamvu/nene-backend
 npm ci
 npm run build
+npm test
 ```
 
 Edit the files in `src/`. Local edits do not change the running VM.
@@ -112,5 +119,5 @@ All routes except `/health` require `Authorization: Bearer <NENE_API_TOKEN>`.
 Production credentials, private keys, logs, MongoDB contents, task workspaces,
 generated artifacts, installed dependencies, compiled output, and old source
 backups are excluded. The large Backboard executable is an external dependency
-documented in `agent-image/README.md`. Existing application behavior and
-VM-specific paths are preserved for later editing.
+documented in `agent-image/README.md`. The API routes and default VM paths are preserved. `NENE_ROOT` and `NENE_PORT`
+can override the runtime root and localhost port for an isolated environment.

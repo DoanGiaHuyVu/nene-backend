@@ -1,6 +1,7 @@
 # Backboard agent image
 
-The Dockerfile, entrypoint, and provider configuration were copied from the VM.
+The Dockerfile, entrypoint, and provider configuration were imported from the VM. The entrypoint now keeps HOME and temporary files inside
+the disposable `/workspace` volume.
 The configuration refers to `DO_MODEL_KEY` through an environment variable;
 it contains no API key.
 
@@ -23,7 +24,7 @@ Expected SHA-256:
 Then build on a Linux x86_64 Docker host, or select that platform explicitly:
 
 ```sh
-docker build --platform linux/amd64 -t nene-agent:0.2 agent-image
+docker build --platform linux/amd64 -t nene-agent:0.3 agent-image
 ```
 
 The VM also has a source checkout of
@@ -34,6 +35,6 @@ into the `backboard` executable. Rebuilding from that checkout requires Bun
 and its dependencies; identical binary output has not been verified.
 
 The backend mounts `backboard-config.json` into each agent container at
-`/seed/backboard-config.json`. The entrypoint copies it into writable temporary
-storage and starts Backboard. Containers use a read-only root filesystem,
-a workspace volume, resource limits, dropped capabilities, and no new privileges.
+`/seed/backboard-config.json`. The entrypoint copies it into `/workspace/.nene-agent` and starts Backboard. Containers use a read-only root filesystem,
+one writable workspace volume, a 512 MB memory limit (640 MB including swap),
+0.75 CPU, 128 processes, dropped capabilities, and no new privileges.

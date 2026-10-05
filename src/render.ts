@@ -29,6 +29,7 @@ export interface RenderDeployResult {
   updatedAt?: string;
   startedAt?: string;
   finishedAt?: string;
+  commit?: { id: string };
 }
 
 function getRenderConfig() {
@@ -37,11 +38,11 @@ function getRenderConfig() {
   const region = process.env.RENDER_REGION ?? "oregon";
 
   if (!apiKey) {
-    throw new Error("RENDER_API_KEY is not configured");
+    throw new RenderApiError(400, "RENDER_API_KEY is not configured");
   }
 
   if (!ownerId) {
-    throw new Error("RENDER_OWNER_ID is not configured");
+    throw new RenderApiError(400, "RENDER_OWNER_ID is not configured");
   }
 
   return {
@@ -61,6 +62,7 @@ async function renderRequest<T>(
     `${RENDER_API_BASE}${path}`,
     {
       ...init,
+      signal: AbortSignal.timeout(20_000),
       headers: {
         Accept: "application/json",
         Authorization: `Bearer ${apiKey}`,
@@ -85,13 +87,7 @@ async function renderRequest<T>(
   }
 
   if (!response.ok) {
-    throw new Error(
-      `Render API ${response.status}: ${
-        typeof body === "string"
-          ? body
-          : JSON.stringify(body)
-      }`,
-    );
+    throw new RenderApiError(response.status, `Render API returned HTTP ${response.status}`);
   }
 
   return body as T;
@@ -185,4 +181,46 @@ export async function triggerRenderDeploy(
       }),
     }
   );
+}
+
+export class RenderApiError extends Error {
+  constructor(public status: number, message: string) { super(message); }
+}
+
+interface RenderService {
+  id: string;
+  name: string;
+  branch: string;
+  repo?: string;
+  dashboardUrl: string;
+  serviceDetails: { url?: string };
+}
+
+export async function getRenderService(serviceId: string) {
+  const service = await renderRequest<RenderService>(`/services/${encodeURIComponent(serviceId)}`);
+  return { serviceId: service.id, url: service.serviceDetails.url, dashboardUrl: service.dashboardUrl };
+}
+
+// Reconcile a response lost during creation before considering any new POST.
+export async function findRenderService(projectId: string, branch: string) {
+  const { ownerId } = getRenderConfig();
+  const query = new URLSearchParams({ name: `nene-${projectId.slice(0, 8)}`, ownerId, limit: "100" });
+  const result = await renderRequest<Array<{ service: RenderService; cursor: string }>>(`/services?${query}`);
+  const matches = result.filter(({ service }) => service.branch === branch && service.repo?.replace(/\.git$/, "") === GITHUB_REPO);
+  if (matches.length > 1) throw new Error("Multiple Render services match this project; manual reconciliation required");
+  const service = matches[0]?.service;
+  return service ? { serviceId: service.id, url: service.serviceDetails.url, dashboardUrl: service.dashboardUrl } : undefined;
+}
+
+export async function findRenderDeploy(serviceId: string, commit: string, requestedAt: string) {
+  let cursor: string | undefined;
+  do {
+    const query = new URLSearchParams({ createdAfter: new Date(Date.parse(requestedAt) - 5000).toISOString(), limit: "100" });
+    if (cursor) query.set("cursor", cursor);
+    const page = await renderRequest<Array<{ deploy: RenderDeployResult; cursor: string }>>(`/services/${encodeURIComponent(serviceId)}/deploys?${query}`);
+    const matching = page.find(({ deploy }) => deploy.commit?.id === commit);
+    if (matching) return matching.deploy;
+    cursor = page.length === 100 ? page[page.length - 1].cursor : undefined;
+  } while (cursor);
+  return undefined;
 }
